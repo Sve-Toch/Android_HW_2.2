@@ -1,15 +1,17 @@
 package com.example.hw2;
 
+import android.graphics.Bitmap;
+
 
 public class Item {
-	     private int IconFile;
+	     private Bitmap IconFile;
 	     private String Name;
 
-	    public Item( int iconFile, String name) {
+	    public Item( Bitmap iconFile, String name) {
 	    	IconFile = iconFile;
 	        Name = name;
 	    }
-	    public int getIcon()
+	    public Bitmap getIcon()
 	    {
 	    	return IconFile;
 	    }

@@ -9,6 +9,13 @@
  android:layout_height="wrap_content"
  android:text="@string/hello_world">
 </TextView>
+
+ <ImageView
+     android:id="@+id/imageView1"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:src="@drawable/ic_launcher" />
+
 <ListView
  android:id="@+id/lvMain"
  android:layout_width="match_parent"

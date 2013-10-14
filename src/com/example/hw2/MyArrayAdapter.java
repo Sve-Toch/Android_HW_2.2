@@ -3,6 +3,7 @@ package com.example.hw2;
 import java.util.List;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 LinearLayout newView;
 
 Item classInstance = getItem(position);
-int icon = classInstance.getIcon();
+Bitmap icon = classInstance.getIcon();
 String name = classInstance.getName();
 // TODO Извлечь из переменной classInstance
 // данные для отображения.
@@ -39,7 +40,7 @@ vi.inflate(resource, newView, true);
 newView = (LinearLayout)convertView;
 }
 ImageView iv = (ImageView) newView.findViewById(R.id.imageView);
-iv.setImageResource(icon);
+iv.setImageBitmap(icon);
 TextView tv = (TextView) newView.findViewById(R.id.textView);
 tv.setText(name);
 // TODO Извлчь Представления для наполнения их данными.
