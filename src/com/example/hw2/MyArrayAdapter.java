@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,16 +15,18 @@ import android.widget.TextView;
 
 public class MyArrayAdapter extends ArrayAdapter<Item> {
 int resource;
+private final static String TAG = "MyArrayAdapter";
 public MyArrayAdapter(Context context,
 		int _resource,
 		List<Item> items) {
 	super(context, _resource, items);
 	resource = _resource;
+    Log.v(TAG, "New adapter");
 	}
 @Override
 public View getView(int position, View convertView, ViewGroup parent) {
+	Log.v(TAG, "get View");
 LinearLayout newView;
-
 Item classInstance = getItem(position);
 Bitmap icon = classInstance.getIcon();
 String name = classInstance.getName();

@@ -1,27 +1,51 @@
 package com.example.hw2;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
 public class LoadItem {
-	private final static String TAG = "ImageManager";
+	private final static String TAG = "LoadItem";
+	private final static String iUrl = "http://java.sogeti.nl/JavaBlog/wp-content/uploads/2009/04/android_icon_256.png";
 	public static ArrayList<Item>loaditem(){
 		ArrayList<Item>	 item = new ArrayList<Item>();
-Bitmap im =downloadImage("mpandroid.filin.mail.ru/pic?email=example@mail.ru&width=90&height=90&name=g");
-     item.add(new Item(im," name"));
-     item.add(new Item(im," name"));
-     item.add(new Item(im," name"));
-     item.add(new Item(im," name"));
-     item.add(new Item(im," name"));    
+		  Log.v(TAG, " new ArrayList");
+   // Bitmap im =downloadImage(iUrl);
+    Bitmap im =getBitmapFromURL(iUrl) ;
+    
+   
+    item.add(new Item(im," name"));
+    item.add(new Item(im," name"));
+    item.add(new Item(im," name"));
+    item.add(new Item(im," name"));
+    item.add(new Item(im," name"));    
      return item;
+	}
+	
+	public static Bitmap getBitmapFromURL(String src) {
+	    try {
+	        URL url = new URL(src);
+	        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+	        connection.setDoInput(true);
+	        connection.connect();
+	        InputStream input = connection.getInputStream();
+	        Bitmap myBitmap = BitmapFactory.decodeStream(input);
+	        return myBitmap;
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
 	}
 	
 	 

@@ -18,14 +18,11 @@ public class MainActivity extends Activity {
 		  super.onCreate(savedInstanceState);
 	      setContentView(R.layout.activity_main);
 	      ImageView   Im = (ImageView) findViewById(R.id.imageView1);  
-	   
 	      ListView   listView = (ListView) findViewById(R.id.lvMain);
-	    
-	        item=LoadItem.loaditem();
+	      item=LoadItem.loaditem();
 	     int resID= R.layout.list_row;
 	     // создаем адаптер
-	     adapter   = new MyArrayAdapter(this,
-	    		 resID, item);
+	     adapter   = new MyArrayAdapter(this,resID, item);
 	     listView.setAdapter(adapter);
 
 	}

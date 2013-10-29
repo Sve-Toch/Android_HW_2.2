@@ -14,11 +14,10 @@ import android.util.Log;
 import android.widget.ImageView;
 
 public class DownloadImage {
-	  private final static String TAG = "ImageManager";
+	  private final static String TAG = "DownloadImage";
 	  
-	  /** Private constructor prevents instantiation from other classes */
 	  private DownloadImage () {}
-	 
+
 	  public static void fetchImage(final String iUrl, final ImageView iView) {
 	    if ( iUrl == null || iView == null )
 	      return;
