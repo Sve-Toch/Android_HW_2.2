@@ -21,18 +21,17 @@ import org.apache.http.util.EntityUtils;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.StrictMode;
 import android.util.Log;
 
-public class LoadItem {
+public class LoadItem  {
 	private final static String TAG = "LoadItem";
-	private final static String iUrl = "http://www.android.com/";
+	private final static String iUrl = "http://mpandroid.filin.mail.ru/pic?email=example@mail.ru&width=90&height=90&name=g/";
 	public static ArrayList<Item>loaditem(){
 		ArrayList<Item>	 item = new ArrayList<Item>();
 		  Log.v(TAG, " new ArrayList");
    // Bitmap im =downloadImage(iUrl);
-    Bitmap im =getBitmapFromURL(iUrl) ;
-    
-   
+    Bitmap im =getBitmapFromURL(iUrl) ;   
     item.add(new Item(im," name"));
     item.add(new Item(im," name"));
     item.add(new Item(im," name"));
@@ -46,6 +45,9 @@ public class LoadItem {
 	public static Bitmap getBitmapFromURL(String src) {
 		HttpURLConnection connection = null;
 		Bitmap myBitmap =null;
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+		StrictMode.setThreadPolicy(policy); 
 		try {
 		//	HttpURLConnection.setFollowRedirects(false);
 			Log.v(TAG, "Starting loading image by URL: " + iUrl);
@@ -65,24 +67,24 @@ public class LoadItem {
 	        	InputStream input = connection.getInputStream();
 	        	BufferedInputStream buf_stream = new BufferedInputStream(input, 8192);
 	        	myBitmap = BitmapFactory.decodeStream(buf_stream);
-	  	        buf_stream.close();
-	  	      connection.disconnect();
+	  	    //    buf_stream.close();
+	  	    //    connection.disconnect();
 	        	return myBitmap;
 	        }
 	        else  return null;
 	       
-		    } catch (IOException e) {
+		    } catch (Exception e) {
 		        e.printStackTrace();
 		        Log.v(TAG, "ERROR");
 		        return null;
 		    }
-		finally {
-		    if (connection != null) {
-		    connection.disconnect();
-		    Log.v(TAG, "Disconnect");
-		    return null;
-		   }
-	}
+		//finally {
+		//    if (connection != null) {
+		//    connection.disconnect();
+		//    Log.v(TAG, "Disconnect");
+		//    return null;
+		//   }
+	//}
 	
 	}	 
 	
