@@ -1,50 +1,37 @@
 package com.example.hw2;
 
+
 import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
-
-import android.R.anim;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
+import android.widget.Toast;
 
-public class LoadItem  {
-	private final static String TAG = "LoadItem";
-	private final static String iUrl = "http://mpandroid.filin.mail.ru/pic?email=example@mail.ru&width=90&height=90&name=g/";
-	public static ArrayList<Item>loaditem(){
-		ArrayList<Item>	 item = new ArrayList<Item>();
-		  Log.v(TAG, " new ArrayList");
-//    Bitmap im =getBitmapFromURL(iUrl) ;  
-   new AsyncLoadItem().execute(iUrl) ; 	
-    Bitmap im= null;
-    item.add(new Item(im," name"));
-    item.add(new Item(im," name"));
-    item.add(new Item(im," name"));
-    item.add(new Item(im," name"));
-    item.add(new Item(im," name"));    
-     return item;
+public class AsyncLoadItem  extends AsyncTask<String,Void,Bitmap> {
+	private final static String TAG = "AsyncLoadItem";
+	@Override
+    protected void onPreExecute() {
+		Log.v(TAG, "onPreExecute");
+		super.onPreExecute();
+		}
+	@Override
+	protected void onPostExecute(Bitmap result) {
+		Log.v(TAG, "onPostExecute");				
+		super.onPostExecute(result);
+		}
+	@Override
+	protected Bitmap doInBackground(String... params) {
+		// TODO Auto-generated method stub
+		Log.v(TAG, "doInBackground");
+		return getBitmapFromURL(params[0]);
 	}
-	
-	
-
 	public static Bitmap getBitmapFromURL(String src) {
 		HttpURLConnection connection = null;
 		Bitmap myBitmap =null;
@@ -91,3 +78,9 @@ public class LoadItem  {
 	}	 
 
 }
+
+	
+	
+	
+	 
+
