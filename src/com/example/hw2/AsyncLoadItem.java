@@ -5,26 +5,48 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.Toast;
 
-public class AsyncLoadItem  extends AsyncTask<String,Void,Bitmap> {
+public class AsyncLoadItem  extends AsyncTask<String,Integer,Bitmap>{
 	private final static String TAG = "AsyncLoadItem";
+	private Activity mainActivity;
+	private int position;
+	
+	public AsyncLoadItem (Activity mainActivity,int position)
+	{
+		this.mainActivity=mainActivity;
+		this.position=position;
+	}
+	@Override
+	protected void onProgressUpdate(Integer... progres)
+	{
+		 
+	}
 	@Override
     protected void onPreExecute() {
 		Log.v(TAG, "onPreExecute");
-		super.onPreExecute();
 		}
 	@Override
 	protected void onPostExecute(Bitmap result) {
-		Log.v(TAG, "onPostExecute");				
-		super.onPostExecute(result);
+		Log.v(TAG, "onPostExecute");	
+		  ListView   listView = (ListView) mainActivity.findViewById(R.id.lvMain);
+		  MyArrayAdapter adapter  = (MyArrayAdapter) listView.getAdapter();
+		  ArrayList<Item> items =(ArrayList<Item>) adapter.getItem();
+		  Item item=items.get(position);	
+		  items.set(position, new Item(result,item.getName()));	     
+		  adapter.notifyDataSetChanged();
+	      adapter.notifyDataSetInvalidated();
 		}
 	@Override
 	protected Bitmap doInBackground(String... params) {

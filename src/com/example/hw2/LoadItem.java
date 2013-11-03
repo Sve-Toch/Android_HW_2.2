@@ -19,6 +19,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import android.R.anim;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -28,23 +29,42 @@ import android.util.Log;
 
 public class LoadItem  {
 	private final static String TAG = "LoadItem";
-	private final static String iUrl = "http://mpandroid.filin.mail.ru/pic?email=example@mail.ru&width=90&height=90&name=g/";
-	public static ArrayList<Item>loaditem(){
-		ArrayList<Item>	 item = new ArrayList<Item>();
+	private final static String iUrl = "http://mpandroid.filin.mail.ru/pic?email=example@mail.ru&width=90&height=90&name=";
+	public static ArrayList<Item>loaditem(Activity mainActivity, String name){
+	ArrayList<Item>	 item = new ArrayList<Item>();
 		  Log.v(TAG, " new ArrayList");
-//    Bitmap im =getBitmapFromURL(iUrl) ;  
-   new AsyncLoadItem().execute(iUrl) ; 	
-    Bitmap im= null;
-    item.add(new Item(im," name"));
-    item.add(new Item(im," name"));
-    item.add(new Item(im," name"));
-    item.add(new Item(im," name"));
-    item.add(new Item(im," name"));    
+//    Bitmap im =getBitmapFromURL(iUrl) ; 
+		  Integer position=0;
+		  Bitmap im= BitmapFactory.decodeResource(mainActivity.getResources(), R.drawable.ic_launcher);
+		  for ( position=0; position<name.length();position++)
+		    {
+		  item.add(new Item(im,position.toString()+" буква "+name.charAt(position)));
+		    }
+		   
+		    for ( position=0; position<name.length();position++)
+		    {
+		    	AsyncLoadItem al =new AsyncLoadItem(mainActivity,position); 	
+		    	al.execute(iUrl+name.charAt(position)+'/') ;   
+		    }
+    
+      
      return item;
 	}
 	
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static Bitmap getBitmapFromURL(String src) {
 		HttpURLConnection connection = null;
 		Bitmap myBitmap =null;

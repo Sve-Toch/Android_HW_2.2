@@ -15,11 +15,13 @@ import android.widget.TextView;
 
 public class MyArrayAdapter extends ArrayAdapter<Item> {
 int resource;
+List<Item>  items;
 private final static String TAG = "MyArrayAdapter";
 public MyArrayAdapter(Context context,
 		int _resource,
 		List<Item> items) {
 	super(context, _resource, items);
+	this.items=items;
 	resource = _resource;
     Log.v(TAG, "New adapter");
 	}
@@ -30,9 +32,7 @@ LinearLayout newView;
 Item classInstance = getItem(position);
 Bitmap icon = classInstance.getIcon();
 String name = classInstance.getName();
-// TODO Извлечь из переменной classInstance
-// данные для отображения.
-// Inflate a new view if this is not an update.
+
 if (convertView == null) {
 newView = new LinearLayout(getContext());
 String inflater = Context.LAYOUT_INFLATER_SERVICE;
@@ -46,8 +46,9 @@ ImageView iv = (ImageView) newView.findViewById(R.id.imageView);
 iv.setImageBitmap(icon);
 TextView tv = (TextView) newView.findViewById(R.id.textView);
 tv.setText(name);
-// TODO Извлчь Представления для наполнения их данными.
-// TODO Наполнить Представления свойствами из полученного объекта.
+
 return newView;
 }
+public List<Item> getItem()
+{return items;}
 }
