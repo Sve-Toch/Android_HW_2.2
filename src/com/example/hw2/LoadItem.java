@@ -33,7 +33,6 @@ public class LoadItem  {
 	public static ArrayList<Item>loaditem(Activity mainActivity, String name){
 	ArrayList<Item>	 item = new ArrayList<Item>();
 		  Log.v(TAG, " new ArrayList");
-//    Bitmap im =getBitmapFromURL(iUrl) ; 
 		  Integer position=0;
 		  Bitmap im= BitmapFactory.decodeResource(mainActivity.getResources(), R.drawable.ic_launcher);
 		  for ( position=0; position<name.length();position++)
