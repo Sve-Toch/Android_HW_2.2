@@ -24,6 +24,4 @@
         android:layout_marginLeft="66dp"
         android:gravity="center_vertical" />
 
-   
-
 </RelativeLayout>
