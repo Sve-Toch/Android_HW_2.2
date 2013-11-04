@@ -40,7 +40,7 @@ public class AsyncLoadItem  extends AsyncTask<String,Integer,Bitmap>{
 	@Override
 	protected void onPostExecute(Bitmap result) {
 		Log.v(TAG, "onPostExecute");	
-		  ListView   listView = (ListView) mainActivity.findViewById(R.id.lvMain);
+		  ListView   listView = null;//(ListView) mainActivity.findViewById(R.id.lvMain);
 		  MyArrayAdapter adapter  = (MyArrayAdapter) listView.getAdapter();
 		  ArrayList<Item> items =(ArrayList<Item>) adapter.getItem();
 		  Item item=items.get(position);	

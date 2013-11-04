@@ -24,6 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+       <activity   android:name="com.example.hw2.FrActivity"></activity>
+        <activity  android:name="com.example.hw2.MainList"></activity>
     </application>
    
 
