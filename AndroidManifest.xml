@@ -26,6 +26,9 @@
         </activity>
        <activity   android:name="com.example.hw2.FrActivity"></activity>
         <activity  android:name="com.example.hw2.MainList"></activity>
+        <activity  android:name="com.example.hw2.FragmentDitailActivity"></activity>
+        <activity  android:name="com.example.hw2.FragmentDetail"></activity>
+        
     </application>
    
 

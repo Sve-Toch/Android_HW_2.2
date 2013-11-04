@@ -30,11 +30,11 @@ import android.util.Log;
 public class LoadItem  {
 	private final static String TAG = "LoadItem";
 	private final static String iUrl = "http://mpandroid.filin.mail.ru/pic?email=example@mail.ru&width=90&height=90&name=";
-	public static ArrayList<Item>loaditem(Activity mainActivity, String name){
+	public static ArrayList<Item>loaditem(MainList mainList, String name){
 	ArrayList<Item>	 item = new ArrayList<Item>();
 		  Log.v(TAG, " new ArrayList");
 		  Integer position=0;
-		  Bitmap im= BitmapFactory.decodeResource(mainActivity.getResources(), R.drawable.ic_launcher);
+		  Bitmap im= BitmapFactory.decodeResource(mainList.getResources(), R.drawable.ic_launcher);
 		  for ( position=0; position<name.length();position++)
 		    {
 		  item.add(new Item(im,position.toString()+" буква "+name.charAt(position)));
@@ -42,7 +42,7 @@ public class LoadItem  {
 		   
 		    for ( position=0; position<name.length();position++)
 		    {
-		    	AsyncLoadItem al =new AsyncLoadItem(mainActivity,position); 	
+		    	AsyncLoadItem al =new AsyncLoadItem(mainList,position); 	
 		    	al.execute(iUrl+name.charAt(position)+'/') ;   
 		    }
     

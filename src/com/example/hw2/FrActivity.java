@@ -5,8 +5,8 @@ import android.app.Activity;
 import android.os.Bundle;
 
 public class FrActivity extends Activity{
-String text;
-public String gettext()
+static String text;
+public static String gettext()
 {return text;}
 @Override
 protected void onCreate(Bundle savedInstanceState) {

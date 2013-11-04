@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="text">Введите имя</string>
     <string name="Button">Ввести</string>
-
+    <string name="more_text">Более подробное описание этого элемента</string>
+     <string name="pirog">У программиста две коробки \nкоробка а коробка бэ \nв коробке а коробка бэ а \nв коробке бэ коробка а</string>
 </resources>

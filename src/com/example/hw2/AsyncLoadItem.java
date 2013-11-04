@@ -20,12 +20,12 @@ import android.widget.Toast;
 
 public class AsyncLoadItem  extends AsyncTask<String,Integer,Bitmap>{
 	private final static String TAG = "AsyncLoadItem";
-	private Activity mainActivity;
+	private MainList mainList;
 	private int position;
 	
-	public AsyncLoadItem (Activity mainActivity,int position)
+	public AsyncLoadItem (MainList mainList,int position)
 	{
-		this.mainActivity=mainActivity;
+		this.mainList=mainList;
 		this.position=position;
 	}
 	@Override
@@ -41,7 +41,8 @@ public class AsyncLoadItem  extends AsyncTask<String,Integer,Bitmap>{
 	protected void onPostExecute(Bitmap result) {
 		Log.v(TAG, "onPostExecute");	
 		  ListView   listView = null;//(ListView) mainActivity.findViewById(R.id.lvMain);
-		  MyArrayAdapter adapter  = (MyArrayAdapter) listView.getAdapter();
+	
+		  MyArrayAdapter adapter  = (MyArrayAdapter) 	  mainList.getListAdapter();
 		  ArrayList<Item> items =(ArrayList<Item>) adapter.getItem();
 		  Item item=items.get(position);	
 		  items.set(position, new Item(result,item.getName()));	     
